@@ -4,9 +4,8 @@
 
 package ch.sbb.tms.capaopt;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import lombok.Value;
 import org.openrewrite.ExecutionContext;
 import org.openrewrite.Option;
@@ -17,6 +16,7 @@ import org.openrewrite.internal.lang.NonNull;
 import java.util.regex.Pattern;
 
 @Value
+@NoArgsConstructor(force = true)
 @EqualsAndHashCode(callSuper = false)
 public class UpgradeBaseImage extends Recipe {
 
@@ -29,11 +29,6 @@ public class UpgradeBaseImage extends Recipe {
             example = "2.0.0")
     @NonNull
     String newVersion;
-
-    @JsonCreator
-    public UpgradeBaseImage(@NonNull @JsonProperty("newVersion") String newVersion) {
-        this.newVersion = newVersion;
-    }
 
     @Override
     public String getDisplayName() {
